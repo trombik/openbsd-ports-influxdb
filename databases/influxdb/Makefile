@@ -8,7 +8,7 @@ REVISION =	1
 
 HOMEPAGE =	https://influxdata.com
 # selfhosted because we bundle go deps
-MASTER_SITES =	https://sizeofvoid.org/pub/OpenBSD/distfiles/
+MASTER_SITES =	https://github.com/trombik/openbsd-ports-influxdb/releases/download/0.0.0/
 
 CATEGORIES =		databases
 
