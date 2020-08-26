@@ -2,7 +2,7 @@
 
 COMMENT =	time-series datastore for metrics, events, and analytics
 
-V =		1.6.6
+V =		1.8.2
 DISTNAME =	influxdb-${V}
 REVISION =	1
 
@@ -56,10 +56,9 @@ do-install:
 # convenience hackish target to bundle/vendor dependencies
 tarball: clean distclean
 	mkdir -p ${WRKDIR}/go/src/github.com/influxdata/
-	ftp -o ${WRKDIR}/gpm https://raw.githubusercontent.com/pote/gpm/v1.4.0/bin/gpm
 	ftp -o ${WRKDIR}/${DISTFILES} https://github.com/influxdata/influxdb/archive/v${V}/${DISTFILES}
 	tar -s /influxdb-${V}/influxdb/ -C ${WRKDIR}/go/src/github.com/influxdata/ -xzf ${WRKDIR}/${DISTFILES}
-	${SETENV} ${MAKE_ENV} bash ${WRKDIR}/gpm get ${WRKSRC}/Godeps
+	cd ${WRKDIR}/go/src/github.com/influxdata/influxdb && ${SETENV} ${MAKE_ENV} GO111MODULE=on GOPROXY="" go mod download
 	find ${WRKDIR}/go -name .git -type d -prune -exec rm -Rf {} +
 	cd ${WRKDIR} && tar -czf /usr/ports/distfiles/${DISTFILES} go
 
