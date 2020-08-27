@@ -4,12 +4,11 @@
 @rcscript ${RCDIR}/influxdb
 @extraunexec rm -rf ${VARBASE}/influxdb/
 @bin bin/influx
-@bin bin/influx-tools
+@bin bin/influx_tools
 @bin bin/influx_inspect
 @bin bin/influx_stress
 @bin bin/influx_tsm
 @bin bin/influxd
-@bin bin/store
 @bin bin/stress_test_server
 @bin bin/test_client
 @man man/man1/influx.1
