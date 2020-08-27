@@ -4,11 +4,14 @@ COMMENT =	time-series datastore for metrics, events, and analytics
 
 V =		1.8.2
 DISTNAME =	influxdb-${V}
-REVISION =	1
+REVISION =	0
 
 HOMEPAGE =	https://influxdata.com
 # selfhosted because we bundle go deps
-MASTER_SITES =	https://github.com/trombik/openbsd-ports-influxdb/releases/download/0.0.0/
+MASTER_SITES =	https://github.com/trombik/openbsd-ports-influxdb/releases/download/0.0.1/
+
+# uncomment when re-rolling the tarball
+# MASTER_SITES =	file:///usr/ports/distfiles/
 
 CATEGORIES =		databases
 
@@ -58,7 +61,10 @@ tarball: clean distclean
 	mkdir -p ${WRKDIR}/go/src/github.com/influxdata/
 	ftp -o ${WRKDIR}/${DISTFILES} https://github.com/influxdata/influxdb/archive/v${V}/${DISTFILES}
 	tar -s /influxdb-${V}/influxdb/ -C ${WRKDIR}/go/src/github.com/influxdata/ -xzf ${WRKDIR}/${DISTFILES}
-	cd ${WRKDIR}/go/src/github.com/influxdata/influxdb && ${SETENV} ${MAKE_ENV} GO111MODULE=on GOPROXY="" go mod download
+
+	# see http://gnats.netbsd.org/cgi-bin/query-pr-single.pl?number=54305
+	cd ${WRKDIR} && patch < ${PATCHDIR}/fixup
+	cd ${WRKDIR}/go/src/github.com/influxdata/influxdb && ${SETENV} ${MAKE_ENV} GO111MODULE=on GOPROXY="" go mod vendor
 	find ${WRKDIR}/go -name .git -type d -prune -exec rm -Rf {} +
 	cd ${WRKDIR} && tar -czf /usr/ports/distfiles/${DISTFILES} go
 

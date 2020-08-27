@@ -1,0 +1,18 @@
+--- go/src/github.com/influxdata/influxdb/go.mod.orig	Thu Aug 27 05:25:14 2020
++++ go/src/github.com/influxdata/influxdb/go.mod	Thu Aug 27 05:31:23 2020
+@@ -17,6 +17,7 @@
+ 	github.com/glycerine/goconvey v0.0.0-20190410193231-58a59202ab31 // indirect
+ 	github.com/gogo/protobuf v1.1.1
+ 	github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db
++	github.com/golang/sys v0.0.0-20180715085529-ac767d655b30 // indirect
+ 	github.com/google/go-cmp v0.4.0
+ 	github.com/influxdata/flux v0.65.0
+ 	github.com/influxdata/influxql v1.1.0
+@@ -35,6 +36,7 @@
+ 	github.com/peterh/liner v1.0.1-0.20180619022028-8c1271fcf47f
+ 	github.com/philhofer/fwd v1.0.0 // indirect
+ 	github.com/pkg/errors v0.8.1
++	github.com/pkg/term v0.0.0-20181226183951-e10e523a0466 // indirect
+ 	github.com/prometheus/client_golang v1.0.0
+ 	github.com/retailnext/hllpp v1.0.1-0.20180308014038-101a6d2f8b52
+ 	github.com/segmentio/kafka-go v0.2.0 // indirect
